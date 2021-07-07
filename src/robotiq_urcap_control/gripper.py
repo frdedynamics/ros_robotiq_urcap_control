@@ -33,7 +33,7 @@ class RobotiqGripper:
     PRE = 'PRE'  # position request (echo of last commanded position)
     OBJ = 'OBJ'  # object detection (0 = moving, 1 = outer grip, 2 = inner grip, 3 = no object at rest)
     FLT = 'FLT'  # fault (0=ok, see manual for errors if not zero)
-
+    CUR = 'COU'  # The current is read instantaneously from the motor drive, value between 0x00 and 0xFF, approximate current equivalent is 10 * value read in mA.
     ENCODING = 'UTF-8'  # ASCII and UTF-8 both seem to work
 
     class GripperStatus(Enum):
@@ -285,7 +285,7 @@ class RobotiqGripper:
         message.gFLT = self._get_var(self.FLT)
         message.gPR = self._get_var(self.PRE)
         message.gPO = self._get_var(self.POS)
-        # message.gCU  = self._get_var()  # current is not read by this package
+        message.gCU  = self._get_var(self.CUR)*0.1
         return message
 
 
