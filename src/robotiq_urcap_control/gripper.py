@@ -12,6 +12,7 @@ import sys
 from enum import Enum
 from robotiq_urcap_control.msg import Robotiq2FGripper_robot_input as inputMsg
 from robotiq_urcap_control.msg import Robotiq2FGripper_robot_output as outputMsg
+from std_msgs.msg import Int16
 
 
 class RobotiqGripper:
@@ -296,6 +297,7 @@ def mainLoop(device):
 
     # The Gripper status is published on the topic named 'Robotiq2FGripperRobotInput'
     pub = rospy.Publisher('Robotiq2FGripperRobotInput', inputMsg, queue_size=1)
+    pub_gripper = rospy.Publisher('/robotiq_grip_gap', Int16, queue_size=1)
 
     # The Gripper command is received from the topic named 'Robotiq2FGripperRobotOutput'
     rospy.Subscriber('Robotiq2FGripperRobotOutput', outputMsg, gripper.send_command)
@@ -305,6 +307,7 @@ def mainLoop(device):
         # Get and publish the Gripper status
         status = gripper.get_status()
         pub.publish(status)
+        pub_gripper.publish(Int16(status.gPO))
 
         # Wait a little
         # rospy.sleep(0.05)
