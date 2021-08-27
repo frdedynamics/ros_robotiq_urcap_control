@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # BASED ON: https://dof.robotiq.com/discussion/1962/programming-options-ur16e-2f-85#latest
 # ROS/Python2 port by felixvd
 # Messing around, SID and Hand-E testing by MOJO
