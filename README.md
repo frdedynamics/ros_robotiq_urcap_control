@@ -3,6 +3,6 @@ Control our robotiq grippers (2F-85 and Hand-E) from ROS thru the Robotiq URCap 
 
 BASED ON: https://dof.robotiq.com/discussion/1962/programming-options-ur16e-2f-85#latest
 
-ROS/Python2 port by felixvd
+ROS/Python2 port by felixvd  (use py3-master brach for Python3 and ROS noetic)
 
 Messing around, SID and Hand-E testing by MOJO

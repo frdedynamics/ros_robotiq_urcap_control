@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # BASED ON: https://dof.robotiq.com/discussion/1962/programming-options-ur16e-2f-85#latest
 # ROS/Python2 port by felixvd
 # Messing around, SID and Hand-E testing by MOJO
@@ -189,19 +189,19 @@ class RobotiqGripper:
         :param log: Whether to print the results to log.
         """
         # first try to open in case we are holding an object
-        (position, status) = self.move_and_wait_for_pos(self.get_open_position(), 64, 1)
+        (position, status) = self.move_and_wait_for_pos(self.get_open_position(), 1, 1)
         if status != RobotiqGripper.ObjectStatus.AT_DEST:
             raise RuntimeError("Calibration failed opening to start: " + str(status))
 
         # try to close as far as possible, and record the number
-        (position, status) = self.move_and_wait_for_pos(self.get_closed_position(), 64, 1)
+        (position, status) = self.move_and_wait_for_pos(self.get_closed_position(), 1, 1)
         if status != RobotiqGripper.ObjectStatus.AT_DEST:
             raise RuntimeError("Calibration failed because of an object: " + str(status))
         assert position <= self._max_position
         self._max_position = position
 
         # try to open as far as possible, and record the number
-        (position, status) = self.move_and_wait_for_pos(self.get_open_position(), 64, 1)
+        (position, status) = self.move_and_wait_for_pos(self.get_open_position(), 1, 1)
         if status != RobotiqGripper.ObjectStatus.AT_DEST:
             raise RuntimeError("Calibration failed because of an object: " + str(status))
         assert position >= self._min_position
